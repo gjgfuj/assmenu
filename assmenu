@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 $: << "."
 require 'assmenu.rb'
+include ASSMenu::Helpers
 #Hash to hold the menus
 $menus = {}
 #Make object of the menu system
@@ -18,5 +19,7 @@ for i in "a".."z"
 		load 'assmenu'+i+'.rb'
 	end
 end
+#Create Exit Menu.
+$menus[:exit] = ASSMenu::Menu.new("Exiting") {|am, m| exit(0)}
 #Load the main menu.
 assmenu.call(:main)
