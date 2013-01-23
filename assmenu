@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 $: << "."
 require 'assmenu.rb'
-include ASSMenu::Helpers
 #Hash to hold the menus
 $menus = {}
 #Make object of the menu system

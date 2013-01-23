@@ -39,36 +39,32 @@ class ASSMenu
 		def call(assmenu)
 			@function.call(assmenu, self)
 		end
-		attr_reader :name, :function
-		attr_accessor :options
-	end
-	#Configuration holder. Do not instantiate this yourself.
-	class C
-		attr_accessor :k1, :k2, :k3, :k4, :k5, :k6, :nl
-	end
-	#Helper Module. Use 'include ASSMenu::Helpers' to use.
-	module Helpers
+		attr_reader :function
 		#Name of menu. Pass a ASSMenu::Menu object in.
-		def menuname(am, menu)
-			puts menu.name
+		def menuname(am)
+			puts @name
 		end
 		#Adds a new option to the menu
-		def option(assmenu, menu, num, name, newmenu)
+		def option(assmenu, num, name, newmenu)
 			puts num.to_s + ": " + name
-			menu.options[k(assmenu, num)] = newmenu
+			@options[k(assmenu, num)] = newmenu
 		end
 		#access a key quicker.
 		def k(assmenu, num)
 			eval("assmenu.c.k"+num.to_s)
 		end
 		#Generates the final menu.
-		def menugen(assmenu, menu)
+		def menugen(assmenu)
 			print "Selection: "
 			job = getc
 			if job == assmenu.c.nl then job = getc end
-			if menu.options[job]
-				assmenu.call(menu.options[job])
+			if @options[job]
+				assmenu.call(@options[job])
 			end
 		end
+	end
+	#Configuration holder. Do not instantiate this yourself.
+	class C
+		attr_accessor :k1, :k2, :k3, :k4, :k5, :k6, :nl
 	end
 end
