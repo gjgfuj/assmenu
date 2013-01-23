@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+$: << "."
 require 'assmenu.rb'
 #Hash to hold the menus
 $menus = {}
