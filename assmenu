@@ -1,15 +1,21 @@
 #!/usr/bin/env ruby
 require 'assmenu.rb'
+#Hash to hold the menus
 $menus = {}
+#Make object of the menu system
 assmenu = ASSMenu.new
 if File.exists?("config.yaml")
+	#File exists, load it.
 	assmenu.configure(true, File.open("config.yaml"))
 else
+	#File doesn't exist, create it.
 	assmenu.configure(false, File.open("config.yaml", 'w'))
 end
+#Load menu files.
 for i in "a".."z"
 	if File.exists?("assmenu"+i+'.rb')
 		load 'assmenu'+i+'.rb'
 	end
 end
+#Load the main menu.
 assmenu.call(:main)
