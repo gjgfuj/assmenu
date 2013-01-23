@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+require 'assmenu'
+$menus = {}
+assmenu = ASSMenu.new
+if File.exists?("config.yaml")
+	assmenu.configure(true, File.open("config.yaml"))
+else
+	assmenu.configure(false, File.open("config.yaml", 'w'))
+end
+for i in "a".."z"
+	if File.exists?("assmenu"+i+'.rb')
+		load 'assmenu'+i+'.rb'
+	end
+end
+assmenu.call(:main)
