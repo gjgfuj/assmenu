@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'assmenu'
+require 'assmenu.rb'
 $menus = {}
 assmenu = ASSMenu.new
 if File.exists?("config.yaml")
